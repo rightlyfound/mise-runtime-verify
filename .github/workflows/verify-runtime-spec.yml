@@ -1,0 +1,29 @@
+name: Verify RuntimeSpec Matrix
+
+on:
+  workflow_dispatch:
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install jq
+        run: sudo apt-get install -y jq
+
+      - name: Make scripts executable
+        run: chmod +x ./run-batch.sh ./verify-reports.sh ./run-probe.sh
+
+      - name: Run batch
+        run: ./run-batch.sh
+
+      - name: Upload reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtime-spec-reports
+          path: ./reports
+
+      - name: Verify predicates
+        run: ./verify-reports.sh

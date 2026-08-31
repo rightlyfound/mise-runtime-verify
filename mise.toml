@@ -1,0 +1,7 @@
+version = "1.0.1"
+name = "mise-runtime-spec"
+description = "Canonical baseline RuntimeSpec v1.0.1 used for P0 verification"
+[process]
+command = ["/workspace/run-probe.sh"]
+env = { "SPEC_DIR" = "/workspace/specs", "REPORT_DIR" = "/workspace/reports" }
+working_dir = "/workspace"
