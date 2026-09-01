@@ -1,0 +1,9 @@
+{
+  "spec_id": "P4",
+  "exit_code": 1,
+  "stdout_sha256": "27502f618d55a8184a37eb58e4258af7432afa69f56a991a9eb4274a57ebb7c4",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "fingerprint": "6f3b4f5026a01722db657a1d4c7a4df2a7ae63e46ab70d087b56db8cf8d85997",
+  "stdout_preview": "PYTHON-PROBE-OK: GIL disabled\nRUST-PROBE-FAIL: edition 2024 not supported\nNODE-PROBE-OK: require(esm) works\n",
+  "stderr_preview": ""
+}

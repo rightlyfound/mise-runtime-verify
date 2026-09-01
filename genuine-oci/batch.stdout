@@ -1,0 +1,50 @@
+>>> Running P0...
+wrote OCI image layout to ./img
+manifest: sha256:2055a15892d8cc9cd315377b6fe7f2d75db826bb3f46842948275124652a2be7
+tool layers:
+  python@3.14.0  sha256:10825ec59696  108135746 bytes
+  rust@1.85.0  sha256:5329c72fae9a  8151024 bytes
+  node@24.15.0  sha256:5277b52fd4b7  58261234 bytes
+    Report: ./reports/P0.json
+>>> Running P1...
+wrote OCI image layout to ./img
+manifest: sha256:3847ebade867d2ce23e80be45e499510dc54b81bf65c7259b6c0db6985ffdc9d
+tool layers:
+  python@3.14.0  sha256:10825ec59696  108135746 bytes
+  rust@1.85.0  sha256:5329c72fae9a  8151024 bytes
+  node@24.15.0  sha256:5277b52fd4b7  58261234 bytes
+    Report: ./reports/P1.json
+>>> Running P2...
+wrote OCI image layout to ./img
+manifest: sha256:058fe827a3757d4e7d5442b910b57b69cee52860a8586a22fb779f8dac2fba11
+tool layers:
+  python@3.14.0  sha256:10825ec59696  108135746 bytes
+  rust@1.85.0  sha256:5329c72fae9a  8151024 bytes
+  node@24.15.0  sha256:5277b52fd4b7  58261234 bytes
+    Report: ./reports/P2.json
+>>> Running P3...
+wrote OCI image layout to ./img
+manifest: sha256:465b0e01711814d6966f30cd68140dbb0257a5f3d5c913392147c38e80c41209
+tool layers:
+  python@3.14.0  sha256:10825ec59696  108135746 bytes
+  rust@1.85.0  sha256:5329c72fae9a  8151024 bytes
+  node@24.15.0  sha256:5277b52fd4b7  58261234 bytes
+    Report: ./reports/P3.json
+>>> Running P4...
+wrote OCI image layout to ./img
+manifest: sha256:8ec945a9624665b224ca9ed5dbea4af602d7eaf9916c2fad82b48b3fee50598e
+tool layers:
+  python@3.14.0  sha256:10825ec59696  108135746 bytes
+  rust@1.83.0  sha256:d9e566f18e06  8151027 bytes
+  node@24.15.0  sha256:5277b52fd4b7  58261234 bytes
+    Report: ./reports/P4.json
+>>> Running P5...
+wrote OCI image layout to ./img
+manifest: sha256:f7c49007ed68c51fe9013de82f2fef21542bef28312a99a7fe0ebcab6a5b3d74
+tool layers:
+  python@3.14.0  sha256:10825ec59696  108135746 bytes
+  rust@1.85.0  sha256:5329c72fae9a  8151024 bytes
+  node@20.0.0  sha256:1052c20cf7a9  47373632 bytes
+    Report: ./reports/P5.json
+
+>>> Batch complete. Reports in ./reports/

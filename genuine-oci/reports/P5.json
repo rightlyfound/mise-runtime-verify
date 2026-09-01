@@ -1,0 +1,9 @@
+{
+  "spec_id": "P5",
+  "exit_code": 1,
+  "stdout_sha256": "bc9056e17371a01ebf9676ad0882d094aa7cddd905ba1529397e67b34fc9dd86",
+  "stderr_sha256": "f50fe7a3b6fa88eb1cd40e26d2ab14b566e21f111c5f364c48d19c614cff7de5",
+  "fingerprint": "a25ee8d18678ee0604e7e5f48dcf20b54f2352a6c725a346bb0dd48ccbb73bf7",
+  "stdout_preview": "PYTHON-PROBE-OK: GIL disabled\nRUST-PROBE-OK: Edition 2024 compiles\nNODE-PROBE-FAIL: ERR_REQUIRE_ESM\n",
+  "stderr_preview": "/tmp/tmp.tislcOQcc9/node_probe/test.cjs:1\nconst m = require('./index.js');\n          ^\n\nError [ERR_REQUIRE_ESM]: require() of ES Module /tmp/tmp.tislcOQcc9/node_probe/index.js from /tmp/tmp.tislcOQcc9"
+}

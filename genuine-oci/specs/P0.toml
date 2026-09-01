@@ -1,0 +1,35 @@
+[tools]
+python = { version = "3.14.0" }
+rust   = { version = "1.85.0", profile = "minimal" }
+node   = "24.15.0"
+
+[oci.env]
+PYTHON_GIL       = "0"
+RUSTUP_TOOLCHAIN = "1.85.0-x86_64-unknown-linux-gnu"
+NODE_OPTIONS     = ""
+
+[env]
+PYTHON_GIL       = "0"
+RUSTUP_TOOLCHAIN = "1.85.0-x86_64-unknown-linux-gnu"
+NODE_OPTIONS     = ""
+
+[settings]
+experimental = true
+
+[oci]
+from        = "ubuntu:24.04"
+tag         = "ghcr.io/bridge/probe:ps-v1"
+workdir     = "/workspace"
+mount_point = "/mise"
+
+[[oci.copy]]
+host  = "/home/ubuntu/.rustup/toolchains/1.85.0-x86_64-unknown-linux-gnu"
+image = "/root/.rustup/toolchains/1.85.0-x86_64-unknown-linux-gnu"
+
+[[oci.copy]]
+host  = "/home/ubuntu/.rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu"
+image = "/root/.rustup/toolchains/1.83.0-x86_64-unknown-linux-gnu"
+
+[[oci.copy]]
+host  = "/home/ubuntu/.local/share/mise-standard/installs/python/3.14.0"
+image = "/root/.local/share/mise-standard/installs/python/3.14.0"

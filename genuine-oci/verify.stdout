@@ -1,0 +1,14 @@
+PASS [P0]: exit_code = '0'
+PASS [P0]: stdout contains ALL-PROBES-OK
+PASS [P1]: exit_code != '0'
+PASS [P1]: output contains GIL_ENABLED
+PASS [P2]: exit_code != '0'
+PASS [P2]: output contains GIL_ENABLED_RUNTIME
+PASS [P3]: exit_code != '0'
+PASS [P3]: stderr contains gate error
+PASS [P4]: exit_code != '0'
+PASS [P4]: stderr contains 'edition 2024'
+PASS [P5]: exit_code != '0'
+PASS [P5]: stderr contains ERR_REQUIRE_ESM
+
+>>> ALL PREDICATES PASSED. RuntimeSpec v1.0.1 is VERIFIED.

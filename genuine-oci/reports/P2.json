@@ -1,0 +1,9 @@
+{
+  "spec_id": "P2",
+  "exit_code": 1,
+  "stdout_sha256": "5fda276faf8788a56dbfb5bef52a26f674fd54294bfe5d5a454326d1b03e2969",
+  "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "fingerprint": "ca64c23d817b26b9dd6512eddae3c4a3b64e642cc347233102b0bb34b522b095",
+  "stdout_preview": "PYTHON-PROBE-FAIL: GIL_ENABLED_RUNTIME\nRUST-PROBE-OK: Edition 2024 compiles\nNODE-PROBE-OK: require(esm) works\n",
+  "stderr_preview": ""
+}
