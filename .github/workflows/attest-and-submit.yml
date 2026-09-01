@@ -1,0 +1,56 @@
+name: Attest and submit RuntimeSpec
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+    inputs:
+      submit_to_rekor:
+        description: 'Submit reports to public Rekor'
+        required: true
+        default: false
+        type: boolean
+
+permissions:
+  contents: read
+
+jobs:
+  attest:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install prerequisites
+        run: sudo apt-get update && sudo apt-get install -y jq openssl podman curl
+      - name: Run genuine OCI verification
+        working-directory: genuine-oci
+        run: |
+          chmod +x run-*.sh verify-reports.sh
+          ./run-batch.sh
+          ./verify-reports.sh
+      - name: Submit reports to Rekor
+        if: ${{ github.event_name == 'workflow_dispatch' && inputs.submit_to_rekor }}
+        working-directory: genuine-oci
+        env:
+          REKOR_PUBLIC_KEY: ${{ secrets.REKOR_PUBLIC_KEY }}
+          REKOR_SIGNATURE_BASE64: ${{ secrets.REKOR_SIGNATURE_BASE64 }}
+        run: ./submit-to-rekor.sh --submit
+      - name: Create dry-run receipt artifact
+        if: ${{ !(github.event_name == 'workflow_dispatch' && inputs.submit_to_rekor) }}
+        working-directory: genuine-oci
+        run: ./submit-to-rekor.sh
+      - name: Generate Ed25519 attestation
+        working-directory: genuine-oci
+        env:
+          MODEL_FINGERPRINT: ${{ vars.MODEL_FINGERPRINT }}
+          OCI_IMAGE_SHA: ${{ vars.OCI_IMAGE_SHA }}
+        run: ./generate-attestation.sh "${MODEL_FINGERPRINT:-unbound-model-fingerprint}"
+      - name: Upload attestation artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: runtimespec-attestation
+          if-no-files-found: error
+          path: |
+            genuine-oci/rekor-receipts.json
+            genuine-oci/attestation.jwt
+            genuine-oci/attestation-public.pem
+            genuine-oci/reports/*.json
