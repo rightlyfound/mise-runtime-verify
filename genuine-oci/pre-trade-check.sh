@@ -21,8 +21,9 @@ b64d "$s" > "$verify_sig" || { rm -f "$verify_input" "$verify_sig"; fail 'invali
 openssl pkeyutl -verify -rawin -pubin -inkey "$PUB" -in "$verify_input" -sigfile "$verify_sig" >/dev/null 2>&1 || { rm -f "$verify_input" "$verify_sig"; fail 'JWT signature invalid'; }
 rm -f "$verify_input" "$verify_sig"
 payload=$(b64d "$p") || fail 'invalid JWT payload'
-now=$(date +%s); exp=$(jq -r '.expires_at // 0' <<<"$payload"); runtime=$(jq -r '.runtime_fingerprint // empty' <<<"$payload"); idx=$(jq -r '.rekor_log_index // empty' <<<"$payload")
+now=$(date +%s); exp=$(jq -r '.expires_at // 0' <<<"$payload"); runtime=$(jq -r '.runtime_fingerprint // empty' <<<"$payload"); model=$(jq -r '.model_fingerprint // empty' <<<"$payload"); idx=$(jq -r '.rekor_log_index // empty' <<<"$payload")
 (( exp > now )) || fail 'JWT expired'
+[[ -n "$model" ]] || fail 'model fingerprint missing'
 [[ "$runtime" == "$EXPECTED_FP" ]] || fail 'runtime fingerprint mismatch'
-if [[ -n "$idx" ]]; then jq -e --argjson i "$idx" '.receipts[] | select(.spec_id=="P0" and .log_index==$i)' "$RECEIPTS" >/dev/null 2>&1 || fail 'Rekor receipt linkage invalid'; fi
-echo "ATTESTATION-OK: $PAIR $SIDE quantity=$QTY price=$PRICE jwt=$(cat "$JWT_FILE")"
+if [[ -n "$idx" ]]; then jq -e --argjson i "$idx" '.receipts[] | select(.spec_id=="P0" and .log_index==$i)' "$RECEIPTS" >/dev/null 2>&1 || fail 'Rekor receipt linkage invalid'; else echo 'ATTESTATION-WARN: trade permitted but JWT is unanchored (no Rekor log index)'; fi
+echo "ATTESTATION-OK: $PAIR $SIDE quantity=$QTY price=$PRICE jwt_file=$JWT_FILE"

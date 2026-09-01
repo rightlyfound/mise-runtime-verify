@@ -20,7 +20,7 @@ The final verification returned exit code 0 with all predicates passed.
 
 `generate-attestation.sh` creates an Ed25519-signed JWT containing the runtime fingerprint, caller-supplied model fingerprint, Rekor index, issuance and five-minute expiry times, specification version, and OCI environment identifier. Ed25519 is the current classical signature; ML-DSA under FIPS 204 is the documented post-quantum migration path, not a claim that this implementation is already post-quantum secure.
 
-`pre-trade-check.sh` is a local fail-closed gate. It validates trade argument syntax, verifies the JWT signature and expiry, checks the canonical runtime fingerprint, and confirms that the JWT’s Rekor index is linked to the P0 receipt. It does not submit orders, call an exchange, or replace exchange-side authorization and risk controls.
+`pre-trade-check.sh` is a local fail-closed gate. It validates trade argument syntax, verifies the JWT signature and expiry, rejects an empty model fingerprint, checks the canonical runtime fingerprint, and confirms that the JWT’s Rekor index is linked to the P0 receipt. A valid JWT without a Rekor index is allowed with an explicit `ATTESTATION-WARN` indicating that the trade is unanchored. The hook does not print the JWT contents, submit orders, call an exchange, or replace exchange-side authorization and risk controls.
 
 The workflow runs genuine OCI verification on Ubuntu 24.04, fails on probe or attestation-generation errors, and uploads the receipts, JWT, public key, and reports. Public Rekor submission is an explicit workflow-dispatch choice rather than an automatic side effect of every push.
 

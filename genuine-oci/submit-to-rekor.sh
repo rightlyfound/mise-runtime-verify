@@ -27,7 +27,7 @@ for report in "$REPORT_DIR"/P{0,1,2,3,4,5}.json; do
     response=$(curl --fail-with-body --silent --show-error -X POST "$REKOR_URL/api/v1/log/entries" -H 'Content-Type: application/json' --data "$payload")
     uuid=$(jq -r 'keys[0]' <<<"$response")
     entry=$(jq -r --arg u "$uuid" '.[$u]' <<<"$response")
-    receipt=$(jq -n --arg id "$id" --arg fp "$fp" --arg url "$REKOR_URL" --arg uuid "$uuid" --argjson e "$entry" '{spec_id:$id,fingerprint:$fp,log_index:($e.logIndex // $e.logIndex|tonumber),uuid:$uuid,integrated_time:($e.integratedTime // null),inclusion_proof:($e.verification.inclusionProof // null),rekor_url:$url}')
+    receipt=$(jq -n --arg id "$id" --arg fp "$fp" --arg url "$REKOR_URL" --arg uuid "$uuid" --argjson e "$entry" '{spec_id:$id,fingerprint:$fp,log_index:(($e.logIndex // null) | if . == null then null else tonumber end),uuid:$uuid,integrated_time:($e.integratedTime // null),inclusion_proof:($e.verification.inclusionProof // null),rekor_url:$url}')
   fi
   entries=$(jq --argjson r "$receipt" '. + [$r]' <<<"$entries")
 done

@@ -21,10 +21,17 @@ jobs:
       - uses: actions/checkout@v4
       - name: Install prerequisites
         run: sudo apt-get update && sudo apt-get install -y jq openssl podman curl
+      - name: Install mise
+        run: |
+          curl https://mise.run | sh
+          echo "$HOME/.local/bin" >> "$GITHUB_PATH"
+          "$HOME/.local/bin/mise" --version
       - name: Run genuine OCI verification
         working-directory: genuine-oci
         run: |
-          chmod +x run-*.sh verify-reports.sh
+          chmod +x run-*.sh verify-reports.sh submit-to-rekor.sh generate-attestation.sh pre-trade-check.sh
+          mise --version
+          podman --version
           ./run-batch.sh
           ./verify-reports.sh
       - name: Submit reports to Rekor
