@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-KEY="${KEY:-./attestation-private.pem}"
-PUB="${PUB:-./attestation-public.pem}"
+KEY="${KEY:-/home/ubuntu/.attestation/mise-runtime-verify.key}"
 REPORT_DIR="${REPORT_DIR:-./reports}"
 OUT="${OUT:-./rekor-receipts.json}"
 REKOR_URL="${REKOR_URL:-https://rekor.sigstore.dev}"
