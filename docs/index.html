@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Agent Verify — RuntimeSpec Attestation</title>
+  <meta name="description" content="Public RuntimeSpec evidence, cosign bundles, and Sigstore Rekor receipts for Agent Verify.">
+  <style>
+    :root { color-scheme: light dark; font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    body { max-width: 880px; margin: 0 auto; padding: 3rem 1.25rem; line-height: 1.55; }
+    code, pre { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .card { border: 1px solid #8885; border-radius: 12px; padding: 1.25rem; margin: 1rem 0; }
+    a { color: #4ea1ff; }
+    .status { color: #159447; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Agent Verify — RuntimeSpec Attestation</h1>
+    <p class="status">Public evidence release: v1.0.5</p>
+    <p>Agent Verify publishes cryptographically verifiable runtime evidence for autonomous AI-agent workflows. The evidence package covers selected Python, Rust, Node.js, OCI hermetic-execution, and provision-gate checks.</p>
+
+    <section class="card">
+      <h2>Free evidence endpoint</h2>
+      <p>Retrieve the published v1.0.5 receipt manifest directly:</p>
+      <p><a href="receipts/v1.0.5.json"><code>receipts/v1.0.5.json</code></a></p>
+      <p>This is a static public evidence endpoint. It returns the previously anchored receipt manifest; it does not execute a fresh OCI probe and it does not cryptographically sign the HTTP response.</p>
+    </section>
+
+    <section class="card">
+      <h2>Independent verification</h2>
+      <p>Review the complete repository and cosign bundles at <a href="https://github.com/rightlyfound/mise-runtime-verify/tree/v1.0.5">GitHub release v1.0.5</a>. Each report can be checked with cosign using the published bundle and public key. The receipt manifest links the six permanent Sigstore Rekor entries.</p>
+      <p>Canonical baseline fingerprint: <code>d02147dc0e389bf665696632d8ec5c7bb2a3bbe27a58add543a735c74eb0e536</code></p>
+      <p>Hermetic-seal fingerprint: <code>ca64c23d817b26b9dd6512eddae3c4a3b64e642cc347233102b0bb34b522b095</code></p>
+    </section>
+
+    <section class="card">
+      <h2>Service boundary</h2>
+      <p>Agent Verify is an evidence and verification component. It does not place trades, custody assets, make investment recommendations, or determine legal or regulatory compliance. Users should review the evidence within their own security, operational, legal, and compliance frameworks.</p>
+    </section>
+  </main>
+</body>
+</html>
